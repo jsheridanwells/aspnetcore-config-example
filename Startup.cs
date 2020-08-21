@@ -25,8 +25,8 @@ namespace AspNetCoreConfigExample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var secretObject = Configuration.GetSection(("Secret"));
-            services.Configure<Secret>(secretObject);
+            var secret = Configuration.GetSection(("Secret"));
+            services.Configure<Secret>(secret);
             services.AddControllers();
         }
 
@@ -39,8 +39,6 @@ namespace AspNetCoreConfigExample
             }
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

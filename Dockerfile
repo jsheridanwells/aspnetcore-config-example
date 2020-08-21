@@ -1,21 +1,19 @@
-FROM mcr.microsoft.com/dotnet/core/runtime:3.1 AS final
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
 WORKDIR /app
-EXPOSE 5000
-ENV ASPNETOCRE_URLS=http://*:5000
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
-WORKDIR /src
-COPY ["AspNetCoreConfigExample.csproj", "./"]
-RUN dotnet restore "./AspNetCoreConfigExample.csproj"
-COPY . .
-WORKDIR /src/.
-RUN dotnet build "AspNetCoreConfigExample.csproj" -c Release -o /app/build
+# Copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
 
-FROM build AS publish
-RUN dotnet publish "AspNetCoreConfigExample.csproj" -c Release -o /app/publish
+# Copy everything else and build
+COPY . ./
+RUN dotnet publish -c Release -o out
 
-FROM base AS final
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build-env /app/out .
+ENV ASPNETCORE_URLS=http://*:5000
+ENV Secret__Id='73ce1157-c1b4-4d90-8669-2b33c86d7801'
+ENV Secret__Location='from Dockerfile'
 ENTRYPOINT ["dotnet", "AspNetCoreConfigExample.dll"]
-

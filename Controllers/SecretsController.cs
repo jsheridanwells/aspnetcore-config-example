@@ -10,15 +10,13 @@ namespace AspNetCoreConfigExample.Controllers
     {
         private Secret _secret;
 
-        public SecretsController(IOptions<Secret> opts)
-        {
-            _secret = opts.Value;
-        }
-        
+        public SecretsController(IOptions<Secret> opts) => _secret = opts.Value;
+
         [HttpGet]
         public IActionResult GetSecret()
         {
-            return Ok(new { Result = "Secret: \n", _secret });
+            var secret = _secret;
+            return Ok(new { Result = "Here's the secret: ", secret });
         }
     }
 }
