@@ -14,6 +14,6 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build-env /app/out .
 ENV ASPNETCORE_URLS=http://*:5000
-ENV Secret__Id='73ce1157-c1b4-4d90-8669-2b33c86d7801'
-ENV Secret__Location='from Dockerfile'
+ENV MyConfig__Id='73ce1157-c1b4-4d90-8669-2b33c86d7801'
+ENV MyConfig__Location='from Dockerfile'
 ENTRYPOINT ["dotnet", "AspNetCoreConfigExample.dll"]

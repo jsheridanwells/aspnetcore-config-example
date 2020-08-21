@@ -6,16 +6,16 @@ namespace AspNetCoreConfigExample.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SecretsController : ControllerBase
+    public class ConfigController : ControllerBase
     {
 
         // 1. inject IOptions
-        public SecretsController() {  }
+        public ConfigController() {  }
         
         // 2. make the configuration values available as a property
 
         [HttpGet]
-        public IActionResult GetSecret()
+        public IActionResult GetConfig()
         {
             // 3. return the secret to inspect it
             return Ok("nothing implemented yet");
