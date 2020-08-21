@@ -8,15 +8,17 @@ namespace AspNetCoreConfigExample.Controllers
     [Route("[controller]")]
     public class SecretsController : ControllerBase
     {
-        private Secret _secret;
 
-        public SecretsController(IOptions<Secret> opts) => _secret = opts.Value;
+        // 1. inject IOptions
+        public SecretsController() {  }
+        
+        // 2. make the configuration values available as a property
 
         [HttpGet]
         public IActionResult GetSecret()
         {
-            var secret = _secret;
-            return Ok(new { Result = "Here's the secret: ", secret });
+            // 3. return the secret to inspect it
+            return Ok("nothing implemented yet");
         }
     }
 }
