@@ -22,7 +22,7 @@ namespace AspNetCoreConfigExample.Controllers
         [HttpGet]
         public IActionResult GetConfig()
         {
-            // 3. return the secret to inspect it
+            // 3. return the config to inspect it
             var configs = _configs;
             return Ok(new { Result = "config values: ", configs });
         }
