@@ -10,15 +10,21 @@ namespace AspNetCoreConfigExample.Controllers
     {
 
         // 1. inject IOptions
-        public ConfigController() {  }
-        
         // 2. make the configuration values available as a property
+        private MyConfig _configs;
+        public ConfigController(IOptions<MyConfig> opts)
+        {
+            _configs = opts.Value;
+        }
+        
+        
 
         [HttpGet]
         public IActionResult GetConfig()
         {
             // 3. return the secret to inspect it
-            return Ok("nothing implemented yet");
+            var configs = _configs;
+            return Ok(new { Result = "config values: ", configs });
         }
     }
 }

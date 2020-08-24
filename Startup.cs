@@ -22,6 +22,8 @@ namespace AspNetCoreConfigExample
         public void ConfigureServices(IServiceCollection services)
         {
             // Add configuration section here
+            var configs = Configuration.GetSection("MyConfig");
+            services.Configure<MyConfig>(configs);
             services.AddControllers();
         }
 
