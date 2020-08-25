@@ -23,7 +23,7 @@ namespace AspNetCoreConfigExample
 //                {
 //                    config.AddEnvironmentVariables();
 //                    config.AddJsonFile("appsettings.json");
-//                    config.AddUserSecrets<Secret>();
+//                    config.AddUserSecrets<MyConfig>();
 //                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
