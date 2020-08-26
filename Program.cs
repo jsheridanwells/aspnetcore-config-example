@@ -21,9 +21,8 @@ namespace AspNetCoreConfigExample
             Host.CreateDefaultBuilder(args)
 //                .ConfigureAppConfiguration((hostContext, config) =>
 //                {
-//                    config.AddEnvironmentVariables();
-//                    config.AddJsonFile("appsettings.json");
-//                    config.AddUserSecrets<Secret>();
+//                    config.AddUserSecrets<MyConfig>();
+//                    config.AddJsonFile("appsettings.jsons");
 //                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
